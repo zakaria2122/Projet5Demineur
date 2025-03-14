@@ -8,20 +8,84 @@ public class Plateau{
     private int nbColonnes;
     private int pourcentageDeBombes;
     private int nbBombes;
-    private List<CaseIntelligente> lePlateau;
+    private List<Case> lePlateau;
 
-    public Plateau(int nbLignes, int nbColonnes, int pourcentageDeBombes){
+    public Plateau(int nbLignes, int nbColonnes, int pourcentageDeBombes, int nbBombes){
         this.nbLignes = nbLignes;
         this.nbColonnes = nbColonnes;
         this.pourcentageDeBombes = pourcentageDeBombes;
+        this.nbBombes = nbBombes;
+        this.lePlateau = new ArrayList<Case>();
     }
 
     private void creerLesCasesVides(){
-
+        for (int i = 0; i < this.nbLignes*this.nbColonnes; i++){
+            this.lePlateau.add(new Case());
+        }
     }
 
     private void rendLesCasesIntelligentes(){
+        for (int i = 0; i < nbLignes; i++){
+            for (int j = 0; j < nbColonnes; j++){
+                if(j == 0){
+                    if(i == 0){
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i+1, j));
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i, j+1));
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i+1, j+1));
+                    }
+                    else if(i == nbLignes-1){
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i-1, j));
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i, j+1));
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i-1, j+1));
+                    }
+                    else{
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i-1, j));
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i+1, j));
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i, j+1));
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i-1, j+1));
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i+1, j+1));
+                    }
+                }
+                else if(j == nbColonnes-1){
+                    if(i == 0){
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i+1, j));
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i, j-1));
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i+1, j-1));
+                    }
+                    else if(i == nbLignes-1){
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i-1, j));
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i, j-1));
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i-1, j-1));
+                    }
+                    else{
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i-1, j));
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i+1, j));
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i, j-1));
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i-1, j-1));
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i+1, j-1));
+                    }
+                }
+                else{
+                    if(i == 0){
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i+1, j));
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i, j-1));
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i, j+1));
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i+1, j-1));
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i+1, j+1));
+                    }
+                    else if(i == nbLignes-1){
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i-1, j));
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i, j-1));
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i, j+1));
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i-1, j-1));
+                        this.getCase(i, j).ajouterVoisine(this.getCase(i-1, j+1));
+                    }
+                    else{
 
+                    }
+                }
+            }
+        }
     }
 
     protected void poseDesBombesAleatoirement(){
@@ -48,20 +112,30 @@ public class Plateau{
         return this.nbBombes;
     }
 
-    public CaseIntelligente getCase(int numLigne, int numColonne){
+    public Case getCase(int numLigne, int numColonne){
         return this.lePlateau.get(numLigne*this.nbColonnes+numColonne);
     }
 
     public int getNbCasesMarquees(){
-        
+        int nbCasesMarquees = 0;
+        for (Case c : this.lePlateau){
+            if (c.estMarquee()){
+                nbCasesMarquees = nbCasesMarquees + 1;
+            }
+        }
+        return nbCasesMarquees;
     }
 
     public void poseBombe(int x, int y){
-        
+        this.getCase(x, y).poseBombe();
     }
 
     public void reset(){
-        return
+        this.lePlateau = new ArrayList<Case>();
+    }
+
+    public String toString(){
+        return "Plateau a "+this.nbLignes+" lignes et "+this.nbColonnes+" colonnes";
     }
 }
 

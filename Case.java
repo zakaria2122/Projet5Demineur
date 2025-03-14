@@ -1,12 +1,18 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Case {
     private boolean contientUneBombe;
     private boolean estDecouverte;
     private boolean estMarquee;
+    private List<Case> lesVoisines;
+
 
     public Case() {
         this.contientUneBombe = false;
         this.estDecouverte = false;
         this.estMarquee = false;
+        lesVoisines = new ArrayList<>();
     }
 
     public void reset() {
@@ -20,7 +26,8 @@ public class Case {
     }
 
     public boolean contientUneBombe() {
-        return this.contientUneBombe;
+     return  this.contientUneBombe;
+      
     }
 
     public boolean estDecouverte() {
@@ -32,14 +39,41 @@ public class Case {
     }
 
     public boolean reveler() {
-        if (!this.estDecouverte) {
-            this.estDecouverte = true;
-            return true;
+        if (! this.estDecouverte && ! this.estMarquee){
+           this.estDecouverte = true;
         }
-        return false;
+        if (nombreBombeVoisine()== 0){
+            for(Case voisine : lesVoisines){
+                if (!voisine.estDecouverte()){
+                    voisine.reveler();
+                }
+            }
+        }
     }
 
     public void marquer() {
         this.estMarquee = !this.estMarquee;
     }
+
+    public void ajouterVoisine(Case voisine) {
+            lesVoisines.add(voisine) ;    
+        
+    }
+    public List<Case> getLesVoisines() {
+        return lesVoisines;
+    }
+
+    public int nombreBombeVoisine(){
+
+        int cpt = 0;
+        for (Case voisine : lesVoisines) {
+            if (voisine.contientUneBombe()) {
+                cpt++;
+            }
+            
+        } return cpt;
+    
+}
+
+
 }
