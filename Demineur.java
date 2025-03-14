@@ -2,6 +2,36 @@ import java.util.Scanner;
 
 public class Demineur extends Plateau{
 
+    private int score = 0;
+    private boolean gameOver = false;
+
+    public Demineur(int nbLignes, int nbColonnes, int pourcentageDeBombes){
+        super(nbLignes, nbColonnes, pourcentageDeBombes);
+    }
+    
+    public int getScore(){
+        return this.score;
+    }
+    
+    public void reveler(int x, int y){
+     
+    }
+
+    public int marquer(int x, int y){
+        
+    }
+
+    public boolean estGagnee(){
+        
+    }
+
+    public boolean estPerdue(){
+        
+    }
+
+    public void reset(){
+        
+    }
 
     public void affiche(){
         System.out.println("JEU DU DEMINEUR");
@@ -49,7 +79,6 @@ public class Demineur extends Plateau{
         System.out.println("Nombres de cases marquées : " + this.getNbCasesMarquees());
         System.out.println("Score : " + this.getScore());
     }
-
     
     public void nouvellePartie(){
         this.reset();
