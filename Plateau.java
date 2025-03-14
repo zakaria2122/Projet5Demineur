@@ -61,7 +61,7 @@ public class Plateau{
     }
 
     public void reset(){
-    
+        return
     }
 }
 
