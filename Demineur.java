@@ -16,6 +16,7 @@ public class Demineur extends Plateau{
     public void reveler(int x, int y){
      
     }
+<<<<<<< HEAD
 
     public int marquer(int x, int y){
         
@@ -32,6 +33,8 @@ public class Demineur extends Plateau{
     public void reset(){
         
     }
+=======
+>>>>>>> fd64165 (zakakaria)
 
     public void affiche(){
         System.out.println("JEU DU DEMINEUR");
