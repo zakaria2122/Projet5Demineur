@@ -8,7 +8,7 @@ public class Plateau{
     private int nbColonnes;
     private int pourcentageDeBombes;
     private int nbBombes;
-    private List<lePlateau> plateaux;
+    private List<CaseIntelligente> lePlateau;
 
     public Plateau(int nbLignes, int nbColonnes, int pourcentageDeBombes){
         this.nbLignes = nbLignes;
@@ -49,19 +49,18 @@ public class Plateau{
     }
 
     public CaseIntelligente getCase(int numLigne, int numColonne){
-    
+        return this.lePlateau.get(numLigne*this.nbColonnes+numColonne);
     }
 
     public int getNbCasesMarquees(){
-    
+        
     }
 
     public void poseBombe(int x, int y){
-    
+        
     }
 
     public void reset(){
         return
     }
 }
-
