@@ -4,6 +4,25 @@ import java.util.Random;
 
 public class Plateau{
 
+    private int nbLignes;
+    private int nbColonnes;
+    private int pourcentageDeBombes;
+    private int nbBombes;
+    private List<lePlateau> plateaux;
+
+    public Plateau(int nbLignes, int nbColonnes, int pourcentageDeBombes){
+        this.nbLignes = nbLignes;
+        this.nbColonnes = nbColonnes;
+        this.pourcentageDeBombes = pourcentageDeBombes;
+    }
+
+    private void creerLesCasesVides(){
+
+    }
+
+    private void rendLesCasesIntelligentes(){
+
+    }
 
     protected void poseDesBombesAleatoirement(){
         Random generateur = new Random();
@@ -17,4 +36,32 @@ public class Plateau{
         }
     }
 
+    public int getNbLignes() {
+        return this.nbLignes;
+    }
+
+    public int getNbColonnes() {
+        return this.nbColonnes;
+    }
+
+    public int getNbTotalBombes() {
+        return this.nbBombes;
+    }
+
+    public CaseIntelligente getCase(int numLigne, int numColonne){
+    
+    }
+
+    public int getNbCasesMarquees(){
+    
+    }
+
+    public void poseBombe(int x, int y){
+    
+    }
+
+    public void reset(){
+    
+    }
 }
+
