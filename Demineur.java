@@ -36,6 +36,22 @@ public class Demineur extends Plateau{
 =======
 >>>>>>> fd64165 (zakakaria)
 
+    public int marquer(int x, int y){
+        
+    }
+
+    public boolean estGagnee(){
+        
+    }
+
+    public boolean estPerdue(){
+        
+    }
+
+    public void reset(){
+        
+    }
+
     public void affiche(){
         System.out.println("JEU DU DEMINEUR");
         // affichage de la bordure supérieure
