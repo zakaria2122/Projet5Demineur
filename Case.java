@@ -47,9 +47,9 @@ public class Case {
                 if (!voisine.estDecouverte()){
                     voisine.reveler();
                 }
-            }
-        }
-    }
+            }return true;
+        } return false;
+    }  
 
     public void marquer() {
         this.estMarquee = !this.estMarquee;
